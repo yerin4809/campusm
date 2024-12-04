@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Map</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        #map { width: 100%; height: 500px; }
+    </style>
+</head>
+<body>
+    <h1>Campus Map</h1>
+    <div id="map"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoieWVyaW40ODA5IiwiYSI6ImNtNGEzcW1iejAzb3AycXE1YjBmdXhyaDAifQ.8m-P4mysx-xE0YtDXSJoZQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [126.9573, 35.9694], // 원광대캠퍼스 위치 좌표 설정 (경도, 위도)
+            zoom: 14
+        });
+    </script>
+</body>
+</html>
