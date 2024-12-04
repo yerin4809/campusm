@@ -25,6 +25,25 @@
             zoom: 14
         });
 
+              // 주요 건물 데이터 배열 생성
+              var buildings = [
+            { name: "인문대", coordinates: [126.9587092, 35.9712557] }, // 인문대
+            { name: "중앙도서관", coordinates: [126.9553666, 35.9702607] }, // 중앙 도서관
+            { name: "창의공과대학", coordinates: [126.9581, 35.96788] }, // 공과대학
+            { name: "대운동장", coordinates: [126.9600979, 35.9703391] }, // 대운동장
+            { name: "학생회관", coordinates: [126.9558, 35.9681] }, // 학생회관
+            { name: "프라임관", coordinates: [126.9585945, 35.9682695] }, // 프라임관
+            { name: "60주년기념관", coordinates: [126.9544319, 35.9658951] } // 60주년기념관
+        ];
+
+        // 각 건물에 대해 마커 생성
+        buildings.forEach(function(building) {
+            new mapboxgl.Marker()
+                .setLngLat(building.coordinates)
+                .setPopup(new mapboxgl.Popup().setHTML("<h3>" + building.name + "</h3>")) // 팝업에 건물 이름 표시
+                .addTo(map);
+        });
+
         // 사용자의 현재 위치를 지도에 표시
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
