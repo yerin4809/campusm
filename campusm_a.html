@@ -12,7 +12,22 @@
 </head>
 <body>
     <h1>Campus Map</h1>
+
+    <!-- 캠퍼스 지도 표시 -->
     <div id="map"></div>
+
+    <!-- 일정 관리 폼 추가-->
+    <form id="schedule-form">
+        <label for="event">Event:</label>
+        <input type="text" id="event" name="event" required>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <button type="submit">Add Event</button>
+    </form>
+
+    <!-- 일정 목록 추가 -->
+    <ul id="schedule-list"></ul>
+
     <script>
         //지도 엑세스 토큰 설정
         mapboxgl.accessToken = 'pk.eyJ1IjoieWVyaW40ODA5IiwiYSI6ImNtNGEzcW1iejAzb3AycXE1YjBmdXhyaDAifQ.8m-P4mysx-xE0YtDXSJoZQ';
@@ -57,6 +72,25 @@
                 map.flyTo({ center: userLocation, zoom: 16 });
             });
         }
+
+        // 폼 제출 시 이벤트 핸들러 추가
+        document.getElementById("schedule-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // 폼이 제출되면 페이지가 새로고침 되는 것을 막음
+
+            // 입력한 이벤트와 날짜 값을 가져옴
+            var eventName = document.getElementById("event").value;
+            var eventDate = document.getElementById("date").value;
+
+            // 새로운 일정 항목을 생성하고 추가함
+            var listItem = document.createElement("li");
+            listItem.textContent = eventName + " - " + eventDate;
+
+            // 일정 목록에 항목 추가
+            document.getElementById("schedule-list").appendChild(listItem);
+
+            // 폼 초기화
+            document.getElementById("schedule-form").reset();
+        });
     </script>
 </body>
 </html>
